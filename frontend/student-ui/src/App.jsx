@@ -1048,7 +1048,9 @@ function App() {
       />
 
       <h2>Student List</h2>
-
+{!loading && !error && (
+  <p>Total students found: {students.length}</p>
+)}
       {loading ? (
         <p>Loading...</p>
       ) : error ? null : students.length === 0 ? (
@@ -1092,60 +1094,3 @@ function App() {
 }
 
 export default App;
-
-async function addStudent(event) {
-  event.preventDefault();
-
-  setFieldErrors({});
-  setError("");
-
-  const student = {
-    name: form.name.trim(),
-    email: form.email.trim(),
-    department: form.department.trim(),
-    marks: Number(form.marks)
-  };
-
-  console.log("Sending student:", student);
-
-  try {
-    const response = await axios.post(
-      "http://localhost:8080/api/students",
-      student,
-      {
-        headers: {
-          "Content-Type": "application/json"
-        }
-      }
-    );
-
-    console.log("Saved student:", response.data);
-
-    // Add the saved student to the table
-    setStudents((previous) => [...previous, response.data]);
-
-    // Clear the form after success
-    setForm({
-      name: "",
-      email: "",
-      department: "",
-      marks: ""
-    });
-
-    setFieldErrors({});
-  } catch (err) {
-    console.log("Add student error:", err.response?.status);
-    console.log("Backend response:", err.response?.data);
-
-    if (err.response?.status === 400) {
-      setFieldErrors(err.response.data);
-    } else {
-      setError(
-        err.response?.data?.message ||
-        err.response?.data?.error ||
-        err.message ||
-        "Unable to add student"
-      );
-    }
-  }
-}
