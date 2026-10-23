@@ -74,5 +74,23 @@ Backend URL: `http://localhost:8080`
 
 Do not commit real passwords or `.env` files. Use placeholder credentials in example configuration files.
 
+## API Endpoints
 
+Base URL: `http://localhost:8080/api/students`
+
+| Method | Endpoint | Purpose |
+|---|---|---|
+| GET | `/api/students` | Get all students |
+| POST | `/api/students` | Add a student |
+| DELETE | `/api/students/{id}` | Delete a student |
+| GET | `/api/students/search?name=Harish` | Search students by name |
+
+### Testing the API
+
+1. Start the Spring Boot backend.
+2. Start the React frontend.
+3. Open `http://localhost:5173/` in your browser.
+4. Use the student form to add students and the search box to find them.
+
+The backend must be running on port 8080 for the frontend API requests to work.
 
