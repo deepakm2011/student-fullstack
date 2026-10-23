@@ -1,0 +1,11 @@
+# Java / Spring Boot
+backend/target/
+backend/.env
+backend/src/main/resources/application.properties
+
+# React / Vite
+frontend/student-ui/node_modules/
+frontend/student-ui/dist/
+frontend/student-ui/.env
+frontend/student-ui/.env.*
+!frontend/student-ui/.env.example
