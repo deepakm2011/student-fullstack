@@ -869,8 +869,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import "./App.css";
-
-const API = "http://localhost:8080/api/students";
+const API = import.meta.env.VITE_API_URL || "http://localhost:8080/api/students";
 
 function App() {
   const [students, setStudents] = useState([]);
